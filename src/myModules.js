@@ -32,7 +32,9 @@ const createProject = function()  {
     console.log(projectArr);
 
     event.preventDefault();
+}
 
+const displayProject = function() {
     // create dom elements for project
     // let header= document.querySelector(".project");
     // let list = document.createElement("th");
