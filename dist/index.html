@@ -3,7 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <title>Getting Started</title>
+    <link rel = "stylesheet" href = "style.css">
     <script src="main.js" defer></script>
   </head>
   <body>
+    <div class = "left-contain">
+      <h1>My Projects</h1>
+      <button class = "new" onclick="open">New Project</button>
+      <table class = "project"></table>
+    </div>
+    <div class = "right-contain">
+      <h1>Info</h1>
+      <table class = 'info'></table>
+    </div>
+    <div class="form-popup" id="myForm">
+      <form class="form-container">
+        <label for="title"><b>Title</b></label>
+        <input type="text" class="title" placeholder="Enter Title" name="title" required>
+    
+        <label for="author"><b>Description</b></label>
+        <input type="text" class="description" placeholder="Enter Description" name="desciption" required>
+
+        <label for="dueDate"><b>Due Date</b></label>
+        <input type="date" class="dueDate" placeholder="Enter Due Date" name="dueDate" required>
+
+        <label for="priority"><b>Priority</b></label>
+        <input type="text" class="priority" placeholder="Enter Priority" name="priority" required>
+    
+        <button type="submit" class="btn">Submit</button>
+        <button type="button" class="btn-cancel">Close</button>
+      </form>
+    </div>
+  </body>
 </html>

@@ -1,12 +1,11 @@
-import _ from 'lodash';
+import {project, info, input, addProject} from './myModules'
 
-function component() {
-  const element = document.createElement('div');
+addProject();
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+// project();
 
-  return element;
-}
+// info();
 
-document.body.appendChild(component());
+
+
+
