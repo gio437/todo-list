@@ -1,6 +1,6 @@
 //import {format} from 'data-bns'
 
-const addProject = () => {
+const toggleForms = () => {
     const btn = document.querySelector(".new");
     btn.addEventListener("click", openForm);
 
@@ -16,17 +16,30 @@ const closeForm = () => {
     document.getElementById("myForm").style.display = "none";
 }
 
-const project = function()  {
+const submitForms = () => {
+    let complete = document.querySelector(".btn"); //will access the submit button on form
+    complete.addEventListener("click", createProject);
+}
+
+const createProject = function()  {
     const title = document.querySelector('.title').value;
     const description = document.querySelector('.description').value;
     const dueDate = document.querySelector('.dueDate').value;
-    const priority = document.querySelector('.checkList').value;
+    const priority = document.querySelector('.priority').value;
 
-    let header= document.querySelector(".project");
-    let list = document.createElement("th");
-    list.textContent = "hello";
-    header.appendChild(list);
+    const newProject = new Input(title, description, dueDate, priority);
+    projectArr.push(newProject);
+    console.log(projectArr);
+
+    event.preventDefault();
+
+    // create dom elements for project
+    // let header= document.querySelector(".project");
+    // let list = document.createElement("th");
+    // list.textContent = "hello";
+    // header.appendChild(list);
 }
+
 const info = () => {
      const header = document.querySelector(".info");
      const list = document.createElement("tr");
@@ -34,7 +47,9 @@ const info = () => {
      header.appendChild(list);
 }
 
-class input  {
+let projectArr = [];
+
+class Input  {
     constructor(title, description, dueDate, priority) {
         this.title = title;
         this.description = description;
@@ -46,8 +61,10 @@ class input  {
 export {
     openForm,
     closeForm,
-    project,
+    createProject,
     info,
-    input,
-    addProject,
+    Input,
+    toggleForms,
+    submitForms,
+    projectArr,
 }

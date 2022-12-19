@@ -1,6 +1,8 @@
-import {project, info, input, addProject} from './myModules'
+import {project, info, Input, toggleForms, submitForms} from './myModules'
 
-addProject();
+toggleForms();
+
+submitForms();
 
 // project();
 
