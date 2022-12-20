@@ -46,13 +46,21 @@ const displayProject = function() {
         list.textContent = projectArr[i].title;
     }
     header.appendChild(list);
+    info();
 }
 
 const info = () => {
-     const header = document.querySelector(".info");
-     const list = document.createElement("tr");
-     list.textContent = "hello";
-     header.appendChild(list);
+     const information = document.querySelector(".info");
+     const description = document.createElement("tr");
+     const dueDate = document.createElement("tr");
+     for (let i = 0; i < projectArr.length; i++) {
+        description.id = i;
+        dueDate.id = i;
+        description.textContent = projectArr[i].description;
+        dueDate.textContent = projectArr[i].dueDate;
+     }
+     information.appendChild(description);
+     information.appendChild(dueDate);
 }
 
 class Input  {
