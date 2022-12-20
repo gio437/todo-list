@@ -15,6 +15,13 @@ table, th, td {
     border: 1px solid;
 }
 
+th {
+    display: flex;
+    flex-direction: row;
+    width: 160px;
+    justify-content: center;
+}
+
 /* The popup form - hidden by default */
 .form-popup {
     display: none;

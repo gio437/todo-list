@@ -30,16 +30,22 @@ const createProject = function()  {
     const newProject = new Input(title, description, dueDate, priority);
     projectArr.push(newProject);
     console.log(projectArr);
+    displayProject();
 
     event.preventDefault();
 }
 
+let projectArr = [];
+
 const displayProject = function() {
     // create dom elements for project
-    // let header= document.querySelector(".project");
-    // let list = document.createElement("th");
-    // list.textContent = "hello";
-    // header.appendChild(list);
+    const header = document.querySelector(".project");
+    const list = document.createElement("th");
+    for (let i = 0; i < projectArr.length; i++) {
+        list.id = i;
+        list.textContent = projectArr[i].title;
+    }
+    header.appendChild(list);
 }
 
 const info = () => {
@@ -48,8 +54,6 @@ const info = () => {
      list.textContent = "hello";
      header.appendChild(list);
 }
-
-let projectArr = [];
 
 class Input  {
     constructor(title, description, dueDate, priority) {
