@@ -25,7 +25,7 @@ const createProject = function()  {
     const title = document.querySelector('.title').value;
     const description = document.querySelector('.description').value;
     const dueDate = document.querySelector('.dueDate').value;
-    const priority = document.querySelector('.priority').value;
+    const priority = document.querySelector('.priority').checked;
 
     const newProject = new Input(title, description, dueDate, priority);
     projectArr.push(newProject);
@@ -53,14 +53,21 @@ const info = () => {
      const information = document.querySelector(".info");
      const description = document.createElement("tr");
      const dueDate = document.createElement("tr");
+     const priority = document.createElement('tr');
      for (let i = 0; i < projectArr.length; i++) {
         description.id = i;
         dueDate.id = i;
+        priority.id = i;
         description.textContent = projectArr[i].description;
         dueDate.textContent = projectArr[i].dueDate;
+        if (projectArr[i].priority) {
+            console.log(projectArr[i].priority);
+            priority.textContent = 'Important!' + ' \u2713';
+        }
      }
      information.appendChild(description);
      information.appendChild(dueDate);
+     information.appendChild(priority);
 }
 
 class Input  {

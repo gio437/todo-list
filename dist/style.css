@@ -53,6 +53,10 @@ th {
     background-color: #ddd;
     outline: none;
   }
+
+  .form-container input[type=checkbox], .form-container input[type=date] {
+    margin: 7px;
+  }
   
   /* Set a style for the submit/login button */
   .form-container .btn {
