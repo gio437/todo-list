@@ -51,9 +51,9 @@ const displayProject = function() {
 
 const info = () => {
      const information = document.querySelector(".info");
-     const description = document.createElement("tr");
-     const dueDate = document.createElement("tr");
-     const priority = document.createElement('tr');
+     const description = document.createElement("th");
+     const dueDate = document.createElement("th");
+     const priority = document.createElement('th');
      for (let i = 0; i < projectArr.length; i++) {
         description.id = i;
         dueDate.id = i;
@@ -63,6 +63,15 @@ const info = () => {
         if (projectArr[i].priority) {
             console.log(projectArr[i].priority);
             priority.textContent = 'Important!' + ' \u2713';
+            description.style.borderBottom = "none";
+            dueDate.style.borderTop = "none";
+            dueDate.style.borderBottom = "none";
+            priority.style.borderTop = "none";
+            projectArr[i].priority = false;
+        }
+        else {
+            description.style.borderBottom = "none";
+            dueDate.style.borderTop = "none";
         }
      }
      information.appendChild(description);
