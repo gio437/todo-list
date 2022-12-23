@@ -56,31 +56,22 @@ const displayProject = function() {
         list.id = i;
         list.textContent = projectArr[i].title;
         list.style.fontSize = '30px';
+
     }
     header.appendChild(list);
     header.appendChild(display);
     header.appendChild(remove);
 
-    display.addEventListener('click', info);
-    remove.addEventListener('click', eraseList);
+    display.addEventListener('click', () => {
+        info(parseInt(list.id));
+    });
+    remove.addEventListener('click', () => {
+        eraseList(parseInt(list.id));
+    });
 }
 
-const eraseList = function() {
-let num;
-
-    if (e.target.classList.contains("take")) {
-        num = parseInt(e.target.parentElement.id);
-        console.log(num);
-   }
-}
-
-const info = () => {
-let num;
-
-    if (e.target.classList.contains("take")) {
-        num = parseInt(e.target.parentElement.id);
-        console.log(num);
-   }
+const info = function(e) {
+console.log(e);
 
      const information = document.querySelector(".info");
      const description = document.createElement("th");
@@ -109,6 +100,10 @@ let num;
      information.appendChild(description);
      information.appendChild(dueDate);
      information.appendChild(priority);
+}
+
+const eraseList = function(e) {
+    console.log(e);
 }
 
 class Input  {
