@@ -27,7 +27,12 @@ const createProject = function()  {
     const dueDate = document.querySelector('.dueDate').value;
     const priority = document.querySelector('.priority').checked;
 
-    const newProject = new Input(title, description, dueDate, priority);
+    let id = 0;
+    for (let i = 0; i < projectArr.length; i++) {
+        id += 1;
+    }
+
+    const newProject = new Input(title, description, dueDate, priority, id);
     projectArr.push(newProject);
     console.log(projectArr);
     displayProject();
@@ -41,15 +46,42 @@ const displayProject = function() {
     // create dom elements for project
     const header = document.querySelector(".project");
     const list = document.createElement("th");
+    const remove = document.createElement('button');
+    const display = document.createElement('button');
+    display.classList.add('display');
+    display.textContent = 'display';
+    remove.classList.add('remove');
+    remove.textContent = 'remove';
     for (let i = 0; i < projectArr.length; i++) {
         list.id = i;
         list.textContent = projectArr[i].title;
+        list.style.fontSize = '30px';
     }
     header.appendChild(list);
-    info();
+    header.appendChild(display);
+    header.appendChild(remove);
+
+    display.addEventListener('click', info);
+    remove.addEventListener('click', eraseList);
+}
+
+const eraseList = function() {
+let num;
+
+    if (e.target.classList.contains("take")) {
+        num = parseInt(e.target.parentElement.id);
+        console.log(num);
+   }
 }
 
 const info = () => {
+let num;
+
+    if (e.target.classList.contains("take")) {
+        num = parseInt(e.target.parentElement.id);
+        console.log(num);
+   }
+
      const information = document.querySelector(".info");
      const description = document.createElement("th");
      const dueDate = document.createElement("th");
@@ -80,11 +112,12 @@ const info = () => {
 }
 
 class Input  {
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate, priority, id) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.id = id;
     }
 }
 
