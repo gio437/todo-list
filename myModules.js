@@ -61,7 +61,7 @@ const displayProject = function() {
     header.appendChild(list);
     header.appendChild(display);
     header.appendChild(remove);
-    selector = parseInt(list.id);
+    //selector = parseInt(list.id);
 
     display.addEventListener('click', () => {
         info(parseInt(list.id));
@@ -114,10 +114,14 @@ console.log(e);
      information.appendChild(dueDate);
      information.appendChild(priority);
      removeInfo();
-     //createEdit();
-     const descriptionEl = document.querySelector('.descriptionEl');
-     descriptionEl.addEventListener('input', () => {
-         editList(selector);
+     description.addEventListener('input', () => {
+         editList(index);
+     })
+     dueDate.addEventListener('input', () => {
+        editList(index);
+     })
+     priority.addEventListener('input', () => {
+        editList(index);
      })
      shown = 1;
 }
@@ -164,28 +168,10 @@ const eraseList = function(e) {
     }
 }
 
-// const createEdit = function() {
-//     const title = document.querySelector('.titleEl');
-//     const description = document.querySelector('.descriptionEl');
-//     const dueDate = document.querySelector('.dueDateEl');
-//     const priority = document.querySelector('.priorityEl');
-//     description.addEventListener('click', () => {
-//         for (let i = 0; i < projectArr.length; i++) {
-//             list.id = id;
-//         }
-//         editList(parseInt(list.id));
-//     })
-// }
-
-const editList = function(e) {
-    let index = projectArr.map(function(item) {
-        return item.id;
-    }).indexOf(e);
-    console.log(e);
-
-    const descriptionEl = document.querySelector('.descriptionEl').value;
-    const dueDateEl = document.querySelector('.dueDateEl').value;
-    const priorityEl = document.querySelector('.priorityEl').checked;
+const editList = function(index) {
+    const descriptionEl = document.querySelector('.descriptionEl').textContent;
+    const dueDateEl = document.querySelector('.dueDateEl').textContent;
+    const priorityEl = document.querySelector('.priorityEl').textContent;
     projectArr[index].description = descriptionEl;
     projectArr[index].dueDate = dueDateEl;
     projectArr[index].priority = priorityEl;
