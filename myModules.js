@@ -27,20 +27,18 @@ const createProject = function()  {
     const description = document.querySelector('.description').value;
     const dueDate = document.querySelector('.dueDate').value;
     const priority = document.querySelector('.priority').checked;
-    for (let i = 0; i < projectArr.length; i++) {
-        id += 1;
-    }
+    id++;
     const newProject = new Input(title, description, dueDate, priority, id);
     projectArr.push(newProject);
     console.log(projectArr);
     displayProject();
-
     event.preventDefault();
 }
 
 submitForms();
 
 let projectArr = [];
+let selector = 0;
 
 const displayProject = function() {
     // create dom elements for project
@@ -63,6 +61,7 @@ const displayProject = function() {
     header.appendChild(list);
     header.appendChild(display);
     header.appendChild(remove);
+    selector = parseInt(list.id);
 
     display.addEventListener('click', () => {
         info(parseInt(list.id));
@@ -93,6 +92,9 @@ console.log(e);
         description.classList.add('descriptionEl');
         dueDate.classList.add('dueDateEl');
         priority.classList.add('priorityEl');
+        description.contentEditable = "true";
+        dueDate.contentEditable = "true";
+        priority.contentEditable = "true";
         description.textContent = projectArr[index].description;
         dueDate.textContent = projectArr[index].dueDate;
         if (projectArr[index].priority) {
@@ -112,6 +114,11 @@ console.log(e);
      information.appendChild(dueDate);
      information.appendChild(priority);
      removeInfo();
+     //createEdit();
+     const descriptionEl = document.querySelector('.descriptionEl');
+     descriptionEl.addEventListener('input', () => {
+         editList(selector);
+     })
      shown = 1;
 }
 
@@ -155,6 +162,34 @@ const eraseList = function(e) {
         console.log(removeTitle);
         removeTitle[i].remove();
     }
+}
+
+// const createEdit = function() {
+//     const title = document.querySelector('.titleEl');
+//     const description = document.querySelector('.descriptionEl');
+//     const dueDate = document.querySelector('.dueDateEl');
+//     const priority = document.querySelector('.priorityEl');
+//     description.addEventListener('click', () => {
+//         for (let i = 0; i < projectArr.length; i++) {
+//             list.id = id;
+//         }
+//         editList(parseInt(list.id));
+//     })
+// }
+
+const editList = function(e) {
+    let index = projectArr.map(function(item) {
+        return item.id;
+    }).indexOf(e);
+    console.log(e);
+
+    const descriptionEl = document.querySelector('.descriptionEl').value;
+    const dueDateEl = document.querySelector('.dueDateEl').value;
+    const priorityEl = document.querySelector('.priorityEl').checked;
+    projectArr[index].description = descriptionEl;
+    projectArr[index].dueDate = dueDateEl;
+    projectArr[index].priority = priorityEl;
+    console.log(projectArr);
 }
 
 class Input  {
