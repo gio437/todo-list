@@ -32,6 +32,7 @@ const createProject = function()  {
     projectArr.push(newProject);
     console.log(projectArr);
     displayProject();
+    storeList(title, description, dueDate, priority);
     event.preventDefault();
 }
 
@@ -147,6 +148,10 @@ let index = projectArr.map(function(item) {
     projectArr.splice(index, 1);
     console.log(projectArr);
     eraseList(e);
+
+    if (projectArr.length === 0) {
+        localStorage.clear();
+    }
 }
 
 const eraseList = function(e) {
@@ -187,3 +192,31 @@ class Input  {
         this.id = id;
     }
 }
+
+const storeList = function(title, description, dueDate, priority) {
+    localStorage.setItem('title', JSON.stringify(title));
+    localStorage.setItem('description', JSON.stringify(description));
+    localStorage.setItem('dueDate', JSON.stringify(dueDate));
+    localStorage.setItem('priority', JSON.stringify(priority));
+    //checkStorage();
+    //checkStorage[i]() loop through list amount and repeat call function by length amount??
+}
+
+//storeList();
+
+const checkStorage = function() {
+    if (localStorage.getItem('title')) {
+        let Input = {
+            title: JSON.parse(localStorage.getItem('title')),
+            description: JSON.parse(localStorage.getItem('description')),
+            dueDate: JSON.parse(localStorage.getItem('dueDate')),
+            priority: JSON.parse(localStorage.getItem('priority'))
+        }
+            projectArr.push(Input);
+            console.log(projectArr);
+            info();
+            displayProject();
+        }
+}
+
+checkStorage();
