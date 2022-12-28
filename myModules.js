@@ -27,19 +27,18 @@ const createProject = function()  {
     const description = document.querySelector('.description').value;
     const dueDate = document.querySelector('.dueDate').value;
     const priority = document.querySelector('.priority').checked;
-    id++;
     const newProject = new Input(title, description, dueDate, priority, id);
+    storeList(title, description, dueDate, priority, id);
     projectArr.push(newProject);
     console.log(projectArr);
     displayProject();
-    storeList(title, description, dueDate, priority);
+    id++;
     event.preventDefault();
 }
 
 submitForms();
 
 let projectArr = [];
-let selector = 0;
 
 const displayProject = function() {
     // create dom elements for project
@@ -62,7 +61,6 @@ const displayProject = function() {
     header.appendChild(list);
     header.appendChild(display);
     header.appendChild(remove);
-    //selector = parseInt(list.id);
 
     display.addEventListener('click', () => {
         info(parseInt(list.id));
@@ -149,6 +147,7 @@ let index = projectArr.map(function(item) {
     console.log(projectArr);
     eraseList(e);
 
+    localStorage.removeItem(`item + ${index}`);
     if (projectArr.length === 0) {
         localStorage.clear();
     }
@@ -193,30 +192,32 @@ class Input  {
     }
 }
 
-const storeList = function(title, description, dueDate, priority) {
-    localStorage.setItem('title', JSON.stringify(title));
-    localStorage.setItem('description', JSON.stringify(description));
-    localStorage.setItem('dueDate', JSON.stringify(dueDate));
-    localStorage.setItem('priority', JSON.stringify(priority));
-    //checkStorage();
-    //checkStorage[i]() loop through list amount and repeat call function by length amount??
+let items = [];
+let storedId = 0;
+
+const storeList = function(title, description, dueDate, priority, id) {
+    storedId += 312;
+    let item = {
+        title: title,
+        description: description,
+        dueDate: dueDate,
+        priority: priority,
+        id: id
+    }
+    localStorage.setItem(`item + ${storedId}`, JSON.stringify(item));
+    items.push(item);
+    localStorage.setItem('items', JSON.stringify(items));
+    console.log(items);
 }
 
-//storeList();
-
 const checkStorage = function() {
-    if (localStorage.getItem('title')) {
-        let Input = {
-            title: JSON.parse(localStorage.getItem('title')),
-            description: JSON.parse(localStorage.getItem('description')),
-            dueDate: JSON.parse(localStorage.getItem('dueDate')),
-            priority: JSON.parse(localStorage.getItem('priority'))
-        }
-            projectArr.push(Input);
-            console.log(projectArr);
-            info();
+        let obj = JSON.parse(localStorage.getItem('items'));
+        for (key in obj) {
+            projectArr.push(obj[key]);
             displayProject();
+            //info();
         }
+        console.log(projectArr);
 }
 
 checkStorage();
