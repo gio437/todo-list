@@ -52,9 +52,9 @@ const displayProject = function() {
     remove.textContent = 'remove';
     console.log(id);
     for (let i = 0; i < projectArr.length; i++) {
-        list.id = id;
-        display.id = id;
-        remove.id = id;
+        list.id = i;
+        display.id = i;
+        remove.id = i;
         list.textContent = projectArr[i].title;
         list.style.fontSize = '30px';
     }
@@ -202,22 +202,21 @@ const storeList = function(title, description, dueDate, priority, id) {
         description: description,
         dueDate: dueDate,
         priority: priority,
-        id: id
+        id: id,
     }
-    localStorage.setItem(`item + ${storedId}`, JSON.stringify(item));
+    localStorage.setItem(`'item' + ${storedId}`, JSON.stringify(item));
     items.push(item);
     localStorage.setItem('items', JSON.stringify(items));
     console.log(items);
 }
 
 const checkStorage = function() {
-        let obj = JSON.parse(localStorage.getItem('items'));
-        for (key in obj) {
-            projectArr.push(obj[key]);
+        let arr = JSON.parse(localStorage.getItem('items'));
+        for (key in arr) {
+            projectArr.push(arr[key]);
             displayProject();
             //info();
         }
         console.log(projectArr);
 }
-
 checkStorage();
