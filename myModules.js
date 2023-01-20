@@ -46,6 +46,9 @@ let selector = 0;
 const displayProject = function() {
     // create dom elements for project
     const header = document.querySelector(".project");
+    header.style.borderStyle = 'solid';
+    header.style.boardWidth = '1px';
+
     const list = document.createElement("th");
     const remove = document.createElement('button');
     const display = document.createElement('button');
@@ -60,6 +63,8 @@ const displayProject = function() {
         remove.id = id;
         list.textContent = projectArr[i].title;
         list.style.fontSize = '30px';
+        list.style.borderStyle = 'solid';
+        list.style.boardWidth = '1px';
     }
     header.appendChild(list);
     header.appendChild(display);
@@ -86,6 +91,8 @@ console.log(e);
 
      console.log(projectArr);
      const information = document.querySelector(".info");
+     information.style.borderStyle = 'solid';
+     information.style.boardWidth = '1px';
      const description = document.createElement("th");
      const dueDate = document.createElement("th");
      const priority = document.createElement('th');
@@ -130,6 +137,7 @@ console.log(e);
 }
 
 const removeInfo = function() {
+    
     if (shown === 1) {
         console.log('hello');
         const currentDescription = document.querySelector('.descriptionEl');
@@ -153,7 +161,11 @@ let index = projectArr.map(function(item) {
 
     if (projectArr.length === 0) {
         localStorage.clear();
+        let header = document.querySelector(".project");
+        header.style.borderStyle = 'none';
     }
+    let information = document.querySelector(".info");
+    information.style.borderStyle = 'none';
 }
 
 const eraseList = function(e) {
